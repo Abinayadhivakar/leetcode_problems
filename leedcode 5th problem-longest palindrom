@@ -1,0 +1,42 @@
+char* longestPalindrome(char* s) {
+    int left;
+    int right;
+    int start=0;
+    int maxlength=1;
+    int length;
+    int i,j,n;
+    n=strlen(s);
+    for(i=0;i<n;i++)
+    {
+        left=i;
+        right=i;
+        while(left>=0&&right<n&&s[left]==s[right])
+        {
+            left--;
+            right++;
+        }
+        length=right-left-1;
+        if(length>maxlength)
+        {
+            maxlength=length;
+            start=left+1;
+        }
+        left=i;
+        right=i+1;
+        while(left>=0&&right<n&&s[left]==s[right])
+        {
+            left--;
+            right++;
+        }
+        length=right-left-1;
+        if(length>maxlength)
+        {
+            maxlength=length;
+            start=left+1;
+        }
+    }
+    s[start+maxlength]='\0';
+    return s+start;
+    
+    
+}
