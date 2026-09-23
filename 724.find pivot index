@@ -1,0 +1,21 @@
+int pivotIndex(int* nums, int numsSize) {
+    int leftsum=0,i;
+    int total=0;
+    int pivot=-1;
+    for(i=0;i<numsSize;i++)
+    {
+        total=total+nums[i];
+    }
+    for(i=0;i<numsSize;i++)
+    {
+        int rightsum=total-leftsum-nums[i];
+        if(leftsum==rightsum)
+        {
+            pivot=i;
+            break;
+        }
+        leftsum=leftsum+nums[i];
+    }
+    return pivot;
+    
+}
