@@ -1,0 +1,54 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* spiralOrder(int** matrix, int matrixSize, int* matrixColSize, int* returnSize) {
+    int count=0;
+    int row=matrixSize;
+    int col=matrixColSize[0];
+    int *answer=malloc(row * col *sizeof(int));
+    int top=0,i,j;
+    int bottom=row-1;
+    int left=0;
+    int right=col-1;
+
+    while(top<=bottom && left<=right)
+    {
+        for(i=left;i<=right;i++)
+        {
+            answer[count]=matrix[top][i];
+            count++;
+        }
+        top++;
+        for(i=top;i<=bottom;i++)
+        {
+            answer[count]=matrix[i][right];
+            count++;
+        }
+        right--;
+        if(top<=bottom)
+        {
+            for(i=right;i>=left;i--)
+            {
+                answer[count]=matrix[bottom][i];
+                count++;
+            }
+            bottom--;
+
+        }
+        if(left<=right)
+        {
+            for(i=bottom;i>=top;i--)
+            {
+                answer[count]=matrix[i][left];
+                count++;
+            }
+            left++;
+
+        }
+    }
+    *returnSize=count;
+    return answer;
+
+
+    
+}
